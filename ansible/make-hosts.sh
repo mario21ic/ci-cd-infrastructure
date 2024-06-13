@@ -12,5 +12,5 @@ for ip in $IPs; do
     counter=$((counter + 1))
 done
 
-echo "Now you can run:"
-echo "ansible-playbook -i hosts playbook.yml --diff"
+echo "Archivo $output_file"
+cat $output_file

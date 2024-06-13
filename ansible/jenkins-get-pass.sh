@@ -7,8 +7,8 @@ counter=0
 
 touch $output_file
 for ip in $IPs; do
-    CLAVE=$(ssh -i ../ansible/sshkey.pem azureuser@$ip sudo cat /var/lib/jenkins/secrets/initialAdminPassword)
-    echo "$ip $CLAVE" >> $output_file
+    CLAVE=$(ssh -i ./sshkey.pem azureuser@$ip sudo cat /var/lib/jenkins/secrets/initialAdminPassword)
+    echo "Server: $ip:8080 $CLAVE" >> $output_file
     counter=$((counter + 1))
 done
 

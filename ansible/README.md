@@ -3,9 +3,14 @@ Crear archivo host:
 ./make-hosts.sh
 ```
 
+Probar ssh conexion:
+```
+./ssh-test.sh
+```
+
 Lanzar ansible playbook:
 ```
-ansible-playbook -i hosts playbook.yml
+./playbook.sh
 ```
 
 Obtener claves de Jenkins
