@@ -11,3 +11,6 @@ for ip in $IPs; do
     echo "$ip $CLAVE" >> $output_file
     counter=$((counter + 1))
 done
+
+echo "Archivo creado $output_file"
+cat $output_file
