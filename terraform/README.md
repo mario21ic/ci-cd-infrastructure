@@ -8,14 +8,19 @@ Crear VMs
 terraform apply
 ```
 
-Revisar ips
+Crear pem
+```
+./crear_sshkey.sh
+```
+
+Revisar IPs
 ```
 terraform output
 ```
 
-Crear pem
+Obtener clave de jenkins
 ```
-./crear_sshkey.sh
+./jenkins-get-pass.sh <ip-servidor>
 ```
 
 
