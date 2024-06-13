@@ -1,5 +1,5 @@
 locals {
-  resource_number = 2
+  resource_number = 9
 }
 
 # Create virtual network
