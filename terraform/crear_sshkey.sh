@@ -1,6 +1,6 @@
 #!/bin/bash
 
-terraform output admin_ssh_key > ../ansible/sshkey.pem
+terraform output -raw admin_ssh_key > ../ansible/sshkey.pem
 chmod 0600 ../ansible/sshkey.pem
 
 echo "Revisa la carpeta ../ansible/sshkey.pem"
