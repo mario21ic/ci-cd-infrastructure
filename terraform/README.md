@@ -5,7 +5,7 @@ terraform init
 
 Crear VMs
 ```
-terraform apply
+terraform apply --auto-approve
 ```
 
 Crear pem
@@ -26,5 +26,5 @@ Obtener clave de jenkins
 
 Eliminar todo
 ```
-terraform destroy
+terraform destroy --auto-approve
 ```
