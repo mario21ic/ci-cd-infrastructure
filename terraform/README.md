@@ -18,9 +18,9 @@ Revisar IPs
 terraform output
 ```
 
-Obtener clave de jenkins
+Obtener claves de Jenkins
 ```
-./jenkins-get-pass.sh <ip-servidor>
+./jenkins-get-pass.sh
 ```
 
 
