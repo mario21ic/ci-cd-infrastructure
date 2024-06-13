@@ -18,11 +18,6 @@ Revisar IPs
 terraform output
 ```
 
-Obtener claves de Jenkins
-```
-./jenkins-get-pass.sh
-```
-
 
 Eliminar todo
 ```
