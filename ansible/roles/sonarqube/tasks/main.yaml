@@ -1,0 +1,21 @@
+- name: Ensure sonarqube directory exists
+  file:
+    path: /home/azureuser/sonarqube/
+    state: directory
+    owner: azureuser
+    group: azureuser
+    mode: 0750
+
+- name: copy compose.yaml
+  copy:
+    src: "compose.yaml"
+    dest: /home/azureuser/sonarqube/compose.yaml
+    owner: azureuser
+    group: azureuser
+    mode: 0750
+
+- name: Run Sonarqube
+  ansible.builtin.command:
+    cmd: docker compose up -d
+  args:
+    chdir: /home/azureuser/sonarqube/

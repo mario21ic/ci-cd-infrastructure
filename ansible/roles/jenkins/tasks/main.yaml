@@ -1,0 +1,36 @@
+- name: Descargar la clave GPG de Jenkins
+  ansible.builtin.get_url:
+    url: https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+    dest: /usr/share/keyrings/jenkins-keyring.asc
+
+#- name: Agregar el repositorio de Jenkins
+#  ansible.builtin.command:
+#    cmd: echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/" | tee /etc/apt/sources.list.d/jenkins.list
+#    creates: /etc/apt/sources.list.d/jenkins.list
+
+- name: Add Jenkins repository
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/"
+    filename: "/etc/apt/sources.list.d/jenkins"
+    state: present
+
+- name: Instalar Jenkins
+  ansible.builtin.apt:
+    name: jenkins
+    state: present
+    update_cache: yes
+
+# Plugins
+- name: Download Jenkins Plugin Manager
+  ansible.builtin.get_url:
+    url: https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.13.0/jenkins-plugin-manager-2.13.0.jar
+    dest: /var/lib/jenkins-plugin-manager.jar
+
+- name: Run Jenkins Plugin Manager to install plugin blue ocean
+  ansible.builtin.command:
+    cmd: java -jar /var/lib/jenkins-plugin-manager.jar --war /usr/share/java/jenkins.war --plugin-download-directory /var/lib/jenkins/plugins/ --plugins blueocean:1.27.13
+
+- name: Run Jenkins Plugin Manager to install plugin docker pipeline
+  ansible.builtin.command:
+    cmd: java -jar /var/lib/jenkins-plugin-manager.jar --war /usr/share/java/jenkins.war --plugin-download-directory /var/lib/jenkins/plugins/ --plugins docker-workflow:580.vc0c340686b_54
+  notify: "restart jenkins" # Notify the handler to restart Jenkins

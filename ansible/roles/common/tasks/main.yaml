@@ -1,0 +1,13 @@
+---
+- name: Instalar fontconfig y OpenJDK 17
+  ansible.builtin.apt:
+    name:
+      - fontconfig
+      - openjdk-17-jre
+      - zip
+      - unzip
+      - ca-certificates
+      - curl
+      - wget
+    state: present
+    update_cache: yes

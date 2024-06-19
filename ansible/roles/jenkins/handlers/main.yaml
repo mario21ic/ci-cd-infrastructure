@@ -1,0 +1,6 @@
+- name: Asegurarse de que Jenkins esté reiniciado y habilitado
+  ansible.builtin.systemd:
+    name: jenkins
+    enabled: yes
+    state: restarted
+  listen: "restart jenkins"

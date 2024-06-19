@@ -1,5 +1,6 @@
 locals {
-  resource_number = 9
+  //resource_number = 9
+  resource_number = 1
 }
 
 # Create virtual network
@@ -46,8 +47,30 @@ resource "azurerm_network_security_group" "my_terraform_nsg" {
     destination_address_prefix = "*"
   }
   security_rule {
-    name                       = "HTTP"
+    name                       = "Sonar"
     priority                   = 1002
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "9000"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+  security_rule {
+    name                       = "HTTP"
+    priority                   = 1003
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "80"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+  security_rule {
+    name                       = "Jenkins"
+    priority                   = 1004
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
