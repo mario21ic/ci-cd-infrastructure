@@ -1,0 +1,21 @@
+- name: Download Trivy
+  ansible.builtin.get_url:
+    url: https://github.com/aquasecurity/trivy/releases/download/v0.50.1/trivy_0.50.1_Linux-64bit.tar.gz
+    dest: /tmp/trivy_0.50.1_Linux-64bit.tar.gz
+
+- name: Extract Trivy
+  ansible.builtin.unarchive:
+    src: /tmp/trivy_0.50.1_Linux-64bit.tar.gz
+    dest: /tmp/
+    remote_src: yes
+
+- name: Move Trivy binary to /usr/local/bin
+  ansible.builtin.command:
+    cmd: mv /tmp/trivy /usr/local/bin/
+  become: yes
+
+- name: Install Syft using curl script
+  ansible.builtin.shell:
+    cmd: curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
+  become: yes
+

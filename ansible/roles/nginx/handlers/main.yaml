@@ -1,0 +1,6 @@
+- name: Asegurarse de que Nginx esté reiniciado y habilitado
+  ansible.builtin.systemd:
+    name: nginx
+    enabled: yes
+    state: restarted
+  listen: "restart nginx"
