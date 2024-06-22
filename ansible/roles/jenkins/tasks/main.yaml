@@ -33,4 +33,16 @@
 - name: Run Jenkins Plugin Manager to install plugin docker pipeline
   ansible.builtin.command:
     cmd: java -jar /var/lib/jenkins-plugin-manager.jar --war /usr/share/java/jenkins.war --plugin-download-directory /var/lib/jenkins/plugins/ --plugins docker-workflow:580.vc0c340686b_54
+
+- name: Run Jenkins Plugin Manager to install plugin copy artifact
+  ansible.builtin.command:
+    cmd: java -jar /var/lib/jenkins-plugin-manager.jar --war /usr/share/java/jenkins.war --plugin-download-directory /var/lib/jenkins/plugins/ --plugins copyartifact:746.vd2a_674fb_4f6f
+
+- name: Run Jenkins Plugin Manager to install plugin Rebuild
+  ansible.builtin.command:
+    cmd: java -jar /var/lib/jenkins-plugin-manager.jar --war /usr/share/java/jenkins.war --plugin-download-directory /var/lib/jenkins/plugins/ --plugins rebuild:332.va_1ee476d8f6d
+
+- name: Run Jenkins Plugin Manager to install plugin delivery pipeline
+  ansible.builtin.command:
+    cmd: java -jar /var/lib/jenkins-plugin-manager.jar --war /usr/share/java/jenkins.war --plugin-download-directory /var/lib/jenkins/plugins/ --plugins delivery-pipeline-plugin:1.4.2
   notify: "restart jenkins" # Notify the handler to restart Jenkins

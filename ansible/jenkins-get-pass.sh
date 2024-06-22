@@ -5,11 +5,12 @@ output_file="jenkins-claves.txt"
 counter=0
 
 
+rm -f $output_file
 touch $output_file
 for ip in $IPs; do
     echo "###" >> $output_file
     CLAVE=$(ssh -i ./sshkey.pem azureuser@$ip sudo cat /var/lib/jenkins/secrets/initialAdminPassword)
-    echo "Jenkins: $ip:8080   clave: $CLAVE" >> $output_file
+    echo "Server IP: $ip - Jenkins clave inicial: $CLAVE" >> $output_file
     echo "Terminal: ssh -i ./sshkey.pem azureuser@$ip" >> $output_file
     counter=$((counter + 1))
 done
